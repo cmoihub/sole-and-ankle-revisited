@@ -1,40 +1,51 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components/macro";
 import { DialogOverlay, DialogContent } from "@reach/dialog";
 
-import { QUERIES } from "../../constants";
+import { QUERIES, COLORS, WEIGHTS } from "../../constants";
 
 import UnstyledButton from "../UnstyledButton";
 import Icon from "../Icon";
 import VisuallyHidden from "../VisuallyHidden";
 
 const MobileMenu = ({ isOpen, onDismiss }) => {
+  const open = () => onDismiss(true);
+  const close = () => onDismiss(false);
   return (
     <Wrapper>
-      <ButtonWrapper onClick={() => onDismiss(!isOpen)}>
+      <ButtonWrapper onClick={open}>
         <Icon id="menu" strokeWidth={1} />
       </ButtonWrapper>
-      {isOpen && (
-        <>
-          <nav>
-            <a href="/sale">Sale</a>
-            <a href="/new">New&nbsp;Releases</a>
-            <a href="/men">Men</a>
-            <a href="/women">Women</a>
-            <a href="/kids">Kids</a>
-            <a href="/collections">Collections</a>
-          </nav>
-          <footer>
+      <Overlay
+        style={{ background: "hsla(0, 100%, 100%, 0.9)" }}
+        isOpen={isOpen}
+        onDismiss={close}
+      >
+        <Content style={{ boxShadow: "0px 10px 50px hsla(0, 0%, 0%, 0.33)" }}>
+          <Nav>
+            <NavLink href="/sale">Sale</NavLink>
+            <NavLink href="/new">New&nbsp;Releases</NavLink>
+            <NavLink href="/men">Men</NavLink>
+            <NavLink href="/women">Women</NavLink>
+            <NavLink href="/kids">Kids</NavLink>
+            <NavLink href="/collections">Collections</NavLink>
+          </Nav>
+          <Footer>
             <a href="/terms">Terms and Conditions</a>
             <a href="/privacy">Privacy Policy</a>
             <a href="/contact">Contact Us</a>
-          </footer>
-        </>
-      )}
+            <ExitButton onClick={close}>Exit.</ExitButton>
+          </Footer>
+        </Content>
+      </Overlay>
     </Wrapper>
   );
 };
+
+const ExitButton = styled.button`
+  align-self: flex-end;
+`;
 
 const Wrapper = styled.div`
   align-self: center;
@@ -42,6 +53,49 @@ const Wrapper = styled.div`
 const ButtonWrapper = styled(UnstyledButton)`
   @media (min-width: ${(props) => props.theme.queries.phone}) {
     display: none;
+  }
+`;
+
+const Overlay = styled(DialogOverlay)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: hsl(0deg 0% 0% / 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Footer = styled.footer``;
+
+const Content = styled(DialogContent)`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: white;
+  border-radius: 8px;
+  width: 65%;
+`;
+
+const Nav = styled.nav`
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0px 4px;
+`;
+
+const NavLink = styled.a`
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: ${COLORS.gray[900]};
+  font-weight: ${WEIGHTS.medium};
+  flex-basis: 5%;
+
+  &:first-of-type {
+    color: ${COLORS.secondary};
   }
 `;
 
