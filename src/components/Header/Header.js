@@ -1,21 +1,21 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components/macro";
 
-import { COLORS, WEIGHTS } from '../../constants';
-import Logo from '../Logo';
-import SuperHeader from '../SuperHeader';
-import MobileMenu from '../MobileMenu';
+import { COLORS, WEIGHTS } from "../../constants";
+import Logo from "../Logo";
+import SuperHeader from "../SuperHeader";
+import MobileMenu from "../MobileMenu";
 
 const Header = () => {
-  const [showMobileMenu, setShowMobileMenu] = React.useState(false);
+  console.log(window.innerWidth);
+  const [showMobileMenu, setShowMobileMenu] = useState(window.innerWidth < 600);
 
   // For our mobile hamburger menu, we'll want to use a button
   // with an onClick handler, something like this:
   //
-  // <button onClick={() => setShowMobileMenu(true)}>
 
   return (
-    <header>
+    <HeaderWrapper>
       <SuperHeader />
       <MainHeader>
         <Side>
@@ -30,15 +30,20 @@ const Header = () => {
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
         <Side />
+        <MobileMenu
+          isOpen={showMobileMenu}
+          onDismiss={() => setShowMobileMenu(!showMobileMenu)}
+        />
       </MainHeader>
-
-      <MobileMenu
-        isOpen={showMobileMenu}
-        onDismiss={() => setShowMobileMenu(false)}
-      />
-    </header>
+    </HeaderWrapper>
   );
 };
+
+const HeaderWrapper = styled.div`
+  @media (max-width: ${(props) => props.theme.queries.phone}) {
+    border-top: 5px solid ${COLORS.gray[900]};
+  }
+`;
 
 const MainHeader = styled.div`
   display: flex;
@@ -52,6 +57,9 @@ const Nav = styled.nav`
   display: flex;
   gap: 48px;
   margin: 0px 48px;
+  @media (max-width: ${(props) => props.theme.queries.phone}) {
+    display: none;
+  }
 `;
 
 const Side = styled.div`

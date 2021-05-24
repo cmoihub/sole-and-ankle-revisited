@@ -18,7 +18,7 @@ export const WEIGHTS = {
 };
 
 export const QUERIES = {
-  phone: 37.5,
-  tablet: 59.375,
-  laptop: 81.25,
+  phone: "37.5rem",
+  tablet: "59.375rem",
+  laptop: "81.25rem",
 };
