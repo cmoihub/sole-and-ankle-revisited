@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components/macro";
 
-import { COLORS, WEIGHTS } from "../../constants";
+import { WEIGHTS } from "../../constants";
 import Logo from "../Logo";
 import SuperHeader from "../SuperHeader";
 import MobileMenu from "../MobileMenu";
@@ -12,7 +12,6 @@ const Header = () => {
 
   // For our mobile hamburger menu, we'll want to use a button
   // with an onClick handler, something like this:
-  //
 
   return (
     <HeaderWrapper>
@@ -41,7 +40,7 @@ const Header = () => {
 
 const HeaderWrapper = styled.div`
   @media (max-width: ${(props) => props.theme.queries.phone}) {
-    border-top: 5px solid ${COLORS.gray[900]};
+    border-top: 5px solid var(--color-gray-900);
   }
 `;
 
@@ -50,13 +49,17 @@ const MainHeader = styled.div`
   align-items: baseline;
   padding: 18px 32px;
   height: 72px;
-  border-bottom: 1px solid ${COLORS.gray[300]};
+  border-bottom: 1px solid var(--color-gray-300);
 `;
 
 const Nav = styled.nav`
   display: flex;
-  gap: 48px;
   margin: 0px 48px;
+  /* Minimum 1.5rem, when 600px or smaller
+  Maximum 3rem, when 1300px or larger*/
+  gap: clamp(1rem, 5.9vw - 1rem, 3rem);
+  overflow-x: scroll;
+
   @media (max-width: ${(props) => props.theme.queries.phone}) {
     display: none;
   }
@@ -70,11 +73,11 @@ const NavLink = styled.a`
   font-size: 1.125rem;
   text-transform: uppercase;
   text-decoration: none;
-  color: ${COLORS.gray[900]};
+  color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
 
   &:first-of-type {
-    color: ${COLORS.secondary};
+    color: var(--secondary);
   }
 `;
 

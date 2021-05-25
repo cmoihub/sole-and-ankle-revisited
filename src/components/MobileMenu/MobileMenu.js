@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styled from "styled-components/macro";
 import { DialogOverlay, DialogContent } from "@reach/dialog";
 
-import { QUERIES, COLORS, WEIGHTS } from "../../constants";
+import { QUERIES, WEIGHTS } from "../../constants";
 
 import UnstyledButton from "../UnstyledButton";
 import Icon from "../Icon";
@@ -35,17 +35,13 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
             <a href="/terms">Terms and Conditions</a>
             <a href="/privacy">Privacy Policy</a>
             <a href="/contact">Contact Us</a>
-            <ExitButton onClick={close}>Exit.</ExitButton>
+            <button onClick={close}>Exit.</button>
           </Footer>
         </Content>
       </Overlay>
     </Wrapper>
   );
 };
-
-const ExitButton = styled.button`
-  align-self: flex-end;
-`;
 
 const Wrapper = styled.div`
   align-self: center;
@@ -90,12 +86,12 @@ const NavLink = styled.a`
   font-size: 1.125rem;
   text-transform: uppercase;
   text-decoration: none;
-  color: ${COLORS.gray[900]};
+  color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
   flex-basis: 5%;
 
   &:first-of-type {
-    color: ${COLORS.secondary};
+    color: var(--secondary);
   }
 `;
 
