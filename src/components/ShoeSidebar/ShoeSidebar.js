@@ -36,7 +36,7 @@ const Link = styled.a`
 `;
 
 const ActiveLink = styled(Link)`
-  color: ${COLORS.primary};
+  color: var(--primary);
 `;
 
 export default Sidebar;
