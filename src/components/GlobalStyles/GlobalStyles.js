@@ -79,6 +79,10 @@ html {
   --primary: hsl(340deg 65% 47%);
   --secondary: hsl(240deg 60% 63%);
   --white: hsl(0deg 0% 100%);
+
+  --weight-normal: 500;
+  --weight-medium: 600;
+  --weight-bold: 800;
 }
 
 html, body, #root {

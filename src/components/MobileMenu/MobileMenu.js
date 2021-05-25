@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styled from "styled-components/macro";
 import { DialogOverlay, DialogContent } from "@reach/dialog";
 
-import { QUERIES, WEIGHTS } from "../../constants";
+// import { QUERIES } from "../../constants";
 
 import UnstyledButton from "../UnstyledButton";
 import Icon from "../Icon";
@@ -87,7 +87,7 @@ const NavLink = styled.a`
   text-transform: uppercase;
   text-decoration: none;
   color: var(--color-gray-900);
-  font-weight: ${WEIGHTS.medium};
+  font-weight: var(--weight-medium);
   flex-basis: 5%;
 
   &:first-of-type {
